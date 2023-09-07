@@ -109,3 +109,41 @@ for i in range(1001):
 
 print(cache[N][K])
 '''
+
+# 백준 11726 2xn 타일링
+'''
+# 메모제이션 방식 
+import sys
+sys.setrecursionlimit(10**7)
+
+N = int(input())
+
+cache = [-1]*1001
+cache[0] = 0
+cache[1] = 1
+cache[2] = 2
+
+
+def f(n):
+    if cache[n] == -1:
+        cache[n] = f(n-1) + f(n-2)
+    return cache[n]%10007
+    
+    
+    
+print(f(N))
+
+
+# 타뷸레이션 방식
+n = int(input())
+
+dp = [0] * 1001
+dp[1] = 1
+dp[2] = 2
+
+for i in range(3,1001):
+    dp[i] = (dp[i-1]+dp[i-2]) % 10007
+
+print(dp[n])
+'''
+
